@@ -42,7 +42,6 @@ export function showHeader() {
 }
 
 export function showCurrentCityInformation(cityName) {
-  console.log(cityName.location.name);
   const currentInformation = `
               <div class="currentWeather">
                   <span class="currentWeather__mainInformation city text">${cityName.location.name}</span>
@@ -55,6 +54,28 @@ export function showCurrentCityInformation(cityName) {
                   <span
                       class="currentWeather__mainInformation forcast text"
                   >H:${cityName.forecast.forecastday[0].day.maxtemp_c} L:${cityName.forecast.forecastday[0].day.mintemp_c}</span>
+              </div>
+              <div class="forecastWeather">
+                  <div class="forecastWeather__text text">Heute ${cityName.forecast.forecastday[0].day.condition.text}. Wind bis zu ${cityName.forecast.forecastday[0].day.maxwind_kph} km/h</div>
+                  <hr />
+                  <div class="allForcasts"></div>
               </div>`;
   app.innerHTML += currentInformation;
+}
+
+export function showTwentyFourHourForecast(time, icon, temperature) {
+  const inputForForecast = document.querySelector(".allForcasts");
+  const forcastInformation = `
+    <div class="forecastData">
+      <div class="forecastData__time text">
+      Time Value
+      </div>
+      <div class="forecastData__image">
+        <img src="image_url" alt="Weather image">
+      </div>
+      <div class="forecastData__temp text">
+      Temperature Value
+      </div>
+    </div>`;
+  inputForForecast.innerHTML += forcastInformation;
 }
