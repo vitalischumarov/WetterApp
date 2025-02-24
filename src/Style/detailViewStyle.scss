@@ -1,0 +1,49 @@
+@use "__mixin" as *;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.left_icon,
+.right_icon {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.currentWeather {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.city {
+    font-size: 1.3rem;
+    padding-bottom: 0.4rem;
+}
+
+.weather {
+    font-size: 2.5rem;
+    padding-bottom: 0.4rem;
+}
+
+@media screen and (min-width: 400px) {
+    .app {
+        height: 900px;
+        width: 400px;
+    }
+}
