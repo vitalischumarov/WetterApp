@@ -99,3 +99,42 @@ export function showThreeDaysForecast(day, temp, icon, wind) {
 
   document.querySelector(".threeDayForecast").innerHTML += dayForecast;
 }
+
+export function showDetailInformation(
+  humidity,
+  feel,
+  sunrise,
+  sunset,
+  uvindex,
+  rain,
+) {
+  const detailView = `
+    <div class="detailView">
+      <div class="detailView__humidity singleBox">
+        <span class="text">Feuchtigkeit</span>
+        <span class="text humidity">${humidity}%</span>
+      </div>
+      <div class="detailView__feel singleBox">
+        <span class="text">Gefühlt</span>
+        <span class="text feel">${feel}°</span>
+      </div>
+      <div class="detailView__sunrise singleBox">
+        <span class="text">Sonnenaufgang</span>
+        <span class="text sunrise">${sunrise}</span>
+      </div>
+      <div class="detailView__sunset singleBox">
+        <span class="text">Sonnenuntergang</span>
+        <span class="text sunset">${sunset}</span>
+      </div>
+      <div class="detailView__rain singleBox">
+        <span class="text">Niederschlag</span>
+        <span class="text rain">${uvindex}</span>
+      </div>
+      <div class="detailView__uvindex singleBox">
+        <span class="text">UV-Index</span>
+        <span class="text uvindex">${rain}</span>
+      </div>
+    </div>`;
+
+  app.innerHTML += detailView;
+}

@@ -8,6 +8,7 @@ import {
   showCurrentCityInformation,
   showTwentyFourHourForecast,
   showThreeDaysForecast,
+  showDetailInformation,
 } from "./View/detailView";
 
 import { showingLoadingScreen } from "./View/loadingView";
@@ -21,6 +22,7 @@ function displayDetailView() {
   showCurrentCityInformation(cityData);
   renderTwentyFourHour();
   renderThreeDayForecast();
+  renderDetailInformation();
 }
 
 function renderTwentyFourHour() {
@@ -75,4 +77,29 @@ function getWeekDay(date) {
   const weekdays = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
   const dayIndex = new Date(date).getDay();
   return weekdays[dayIndex];
+}
+
+function renderDetailInformation() {
+  const humidity = `${cityData.current.humidity}%`;
+  const feel = `${cityData.current.feelslike_c}°`;
+  const sunrise = convertTime(cityData.forecast.forecastday[0].astro.sunrise);
+  const sunset = convertTime(cityData.forecast.forecastday[0].astro.sunset);
+  const uvindex = cityData.forecast.forecastday[0].day.uv;
+  const rain = `${cityData.forecast.forecastday[0].day.totalprecip_mm}mm`;
+
+  showDetailInformation(humidity, feel, sunrise, sunset, uvindex, rain);
+}
+
+function convertTime(timeString) {
+  const [time, period] = timeString.split(" ");
+  let [hours, minutes] = time.split(":").map((num) => parseInt(num));
+
+  if (period === "AM" && hours === 12) {
+    hours = 0;
+  } else if (period === "PM" && hours !== 12) {
+    hours += 12;
+  }
+  const hoursFormatted = hours.toString().padStart(2, "0");
+  const minutesFormatted = minutes.toString().padStart(2, "0");
+  return `${hoursFormatted}:${minutesFormatted} Uhr`;
 }
