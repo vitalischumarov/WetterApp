@@ -106,7 +106,7 @@ export function showDetailInformation(
   sunrise,
   sunset,
   uvindex,
-  rain,
+  rain
 ) {
   const detailView = `
     <div class="detailView">
@@ -141,4 +141,8 @@ export function showDetailInformation(
 
 export function setBackgroundConditionImage(url) {
   app.style.backgroundImage = `url(${url})`;
+}
+
+function buttonAction() {
+  console.log("hello");
 }

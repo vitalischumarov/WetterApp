@@ -1,7 +1,4 @@
 import "./View/favoritesView";
-import "./View/loadingView";
-import { fetchData } from "./Model/api";
-import { getConditionImagePath } from "./Model/condition";
 import {
   showHeader,
   showCurrentCityInformation,
@@ -10,14 +7,16 @@ import {
   showDetailInformation,
   setBackgroundConditionImage,
 } from "./View/detailView";
-
 import { showingLoadingScreen } from "./View/loadingView";
+import { fetchData } from "./Model/api";
+import { getConditionImagePath } from "./Model/condition";
+import { display } from "./View/favoritesView";
 
 showingLoadingScreen();
-let cityData = await fetchData("Miami");
+let cityData = await fetchData("Miland");
 displayDetailView();
 
-function displayDetailView() {
+export function displayDetailView() {
   showHeader();
   showCurrentCityInformation(cityData);
   renderTwentyFourHour();
@@ -33,7 +32,7 @@ function renderTwentyFourHour() {
     showTwentyFourHourForecast(
       modifyTime(time),
       cityData.forecast.forecastday[selectedDay].hour[time].condition.icon,
-      cityData.forecast.forecastday[selectedDay].hour[time].temp_c,
+      cityData.forecast.forecastday[selectedDay].hour[time].temp_c
     );
     time = time + 1;
     if (time > 23) {
@@ -69,7 +68,7 @@ function renderThreeDayForecast() {
       day,
       `H: ${cityData.forecast.forecastday[i].day.maxtemp_c} L: ${cityData.forecast.forecastday[i].day.mintemp_c}`,
       cityData.forecast.forecastday[i].day.condition.icon,
-      cityData.forecast.forecastday[i].day.maxwind_kph,
+      cityData.forecast.forecastday[i].day.maxwind_kph
     );
   }
 }
@@ -126,3 +125,8 @@ function renderConditionImage() {
   const url = getConditionImagePath(code, isDay);
   return url;
 }
+
+const button = document.querySelector(".left_icon");
+button.addEventListener("click", () => {
+  display();
+});
