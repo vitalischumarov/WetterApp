@@ -1,20 +1,20 @@
-// import "./View/detailView";
 import "./View/favoritesView";
 import "./View/loadingView";
 import { fetchData } from "./Model/api";
-
+import { getConditionImagePath } from "./Model/condition";
 import {
   showHeader,
   showCurrentCityInformation,
   showTwentyFourHourForecast,
   showThreeDaysForecast,
   showDetailInformation,
+  setBackgroundConditionImage,
 } from "./View/detailView";
 
 import { showingLoadingScreen } from "./View/loadingView";
 
 showingLoadingScreen();
-let cityData = await fetchData("Herford");
+let cityData = await fetchData("Miami");
 displayDetailView();
 
 function displayDetailView() {
@@ -23,6 +23,7 @@ function displayDetailView() {
   renderTwentyFourHour();
   renderThreeDayForecast();
   renderDetailInformation();
+  setBackgroundConditionImage(renderConditionImage());
 }
 
 function renderTwentyFourHour() {
@@ -102,4 +103,26 @@ function convertTime(timeString) {
   const hoursFormatted = hours.toString().padStart(2, "0");
   const minutesFormatted = minutes.toString().padStart(2, "0");
   return `${hoursFormatted}:${minutesFormatted} Uhr`;
+}
+
+function dayOrNight(city, currentHour) {
+  const dayStatus = city.forecast.forecastday[0].hour[currentHour].is_day;
+  if (dayStatus === 1) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function getConditionCode(city, currentHour) {
+  const conditionCode =
+    city.forecast.forecastday[0].hour[currentHour].condition.code;
+  return conditionCode;
+}
+
+function renderConditionImage() {
+  const code = getConditionCode(cityData, getCurrentHour(cityData));
+  const isDay = dayOrNight(cityData, getCurrentHour(cityData));
+  const url = getConditionImagePath(code, isDay);
+  return url;
 }

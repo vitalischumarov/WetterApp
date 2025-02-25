@@ -27,7 +27,7 @@ export function showHeader() {
                           viewBox="0 0 24 24"
                           stroke-width="1.5"
                           stroke="currentColor"
-                          class="saveButton__icon"
+                          class="saveButtonIcon"
                       >
                           <path
                               stroke-linecap="round"
@@ -112,11 +112,11 @@ export function showDetailInformation(
     <div class="detailView">
       <div class="detailView__humidity singleBox">
         <span class="text">Feuchtigkeit</span>
-        <span class="text humidity">${humidity}%</span>
+        <span class="text humidity">${humidity}</span>
       </div>
       <div class="detailView__feel singleBox">
         <span class="text">Gefühlt</span>
-        <span class="text feel">${feel}°</span>
+        <span class="text feel">${feel}</span>
       </div>
       <div class="detailView__sunrise singleBox">
         <span class="text">Sonnenaufgang</span>
@@ -137,4 +137,8 @@ export function showDetailInformation(
     </div>`;
 
   app.innerHTML += detailView;
+}
+
+export function setBackgroundConditionImage(url) {
+  app.style.backgroundImage = `url(${url})`;
 }
