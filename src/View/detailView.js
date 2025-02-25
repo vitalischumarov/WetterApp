@@ -38,7 +38,7 @@ export function showHeader() {
                   </div>
               </div>`;
 
-  app.innerHTML += header;
+  app.innerHTML = header;
 }
 
 export function showCurrentCityInformation(cityName) {
@@ -59,6 +59,12 @@ export function showCurrentCityInformation(cityName) {
                   <div class="forecastWeather__text text">Heute ${cityName.forecast.forecastday[0].day.condition.text}. Wind bis zu ${cityName.forecast.forecastday[0].day.maxwind_kph} km/h</div>
                   <hr />
                   <div class="allForcasts"></div>
+              </div>
+              <div class="threeDayForecast">
+                <div class="threeDayForecast__text text">
+                Vorhersagen für die nächsten 3 Tage:
+                </div>
+                <hr />
               </div>`;
   app.innerHTML += currentInformation;
 }
@@ -68,14 +74,28 @@ export function showTwentyFourHourForecast(time, icon, temperature) {
   const forcastInformation = `
     <div class="forecastData">
       <div class="forecastData__time text">
-      Time Value
+      ${time}
       </div>
       <div class="forecastData__image">
-        <img src="image_url" alt="Weather image">
+        <img src="${icon}" alt="Weather image">
       </div>
       <div class="forecastData__temp text">
-      Temperature Value
+      ${temperature}
       </div>
     </div>`;
   inputForForecast.innerHTML += forcastInformation;
+}
+
+export function showThreeDaysForecast(day, temp, icon, wind) {
+  const dayForecast = `
+    <div class="forecastToday">
+      <div class="forecastToday__day text">${day}</div>
+      <div class="forecastToday__icon">
+        <img src="${icon}" alt="Wetter Icon" class="img_threeDayForecast">
+      </div>
+      <div class="forecastToday__temp text">${temp}°C</div>
+      <div class="forecastToday__wind text">Wind: ${wind} km/h</div>
+    </div>`;
+
+  document.querySelector(".threeDayForecast").innerHTML += dayForecast;
 }

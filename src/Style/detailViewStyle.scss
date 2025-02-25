@@ -16,7 +16,6 @@ body {
 }
 
 .header {
-    background-color: blue;
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
@@ -35,6 +34,10 @@ body {
     flex-direction: column;
     width: 100%;
     margin-bottom: 2rem;
+}
+
+.forecastWeather {
+    @include dataArea;
 }
 
 .city {
@@ -59,6 +62,35 @@ body {
 
 .allForcasts::-webkit-scrollbar {
     display: none;
+}
+
+.forecastData {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.threeDayForecast {
+    @include dataArea;
+}
+
+.forecastToday {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    &__day {
+        width: 15%;
+    }
+
+    &__icon {
+        width: 10%;
+    }
+}
+
+.img_threeDayForecast {
+    height: 2rem;
 }
 
 @media screen and (min-width: 400px) {

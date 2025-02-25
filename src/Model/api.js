@@ -1,3 +1,5 @@
+import "../View/loadingView";
+
 export async function fetchData(cityName) {
   const WEATHER_API_1 =
     "http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=";
