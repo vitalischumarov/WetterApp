@@ -131,7 +131,7 @@ function renderConditionImage() {
 const button = document.querySelector(".left_icon");
 button.addEventListener("click", () => {
   display();
-  showCity();
-  showCity();
-  showCity();
+  for (let i = 0; i < cities.length; i++) {
+    showCity(cities[i]);
+  }
 });

@@ -44,7 +44,7 @@ export function showCity(
       </div>
       <div class="rightBox" id="${name}" style="background-image: url(${img})">
         <div class="favorite__description">
-        <span class="text city">Stadt</span>
+        <span class="text city">${name}</span>
         <span class="text">Land</span>
         <br />
         <span class="text">Condition</span>
