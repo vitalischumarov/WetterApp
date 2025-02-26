@@ -10,7 +10,9 @@ import {
 import { showingLoadingScreen } from "./View/loadingView";
 import { fetchData } from "./Model/api";
 import { getConditionImagePath } from "./Model/condition";
-import { display } from "./View/favoritesView";
+import { display, showCity } from "./View/favoritesView";
+
+const cities = ["Bielefeld", "Tomsk", "Kyoto"];
 
 showingLoadingScreen();
 let cityData = await fetchData("Miland");
@@ -32,7 +34,7 @@ function renderTwentyFourHour() {
     showTwentyFourHourForecast(
       modifyTime(time),
       cityData.forecast.forecastday[selectedDay].hour[time].condition.icon,
-      cityData.forecast.forecastday[selectedDay].hour[time].temp_c
+      cityData.forecast.forecastday[selectedDay].hour[time].temp_c,
     );
     time = time + 1;
     if (time > 23) {
@@ -68,7 +70,7 @@ function renderThreeDayForecast() {
       day,
       `H: ${cityData.forecast.forecastday[i].day.maxtemp_c} L: ${cityData.forecast.forecastday[i].day.mintemp_c}`,
       cityData.forecast.forecastday[i].day.condition.icon,
-      cityData.forecast.forecastday[i].day.maxwind_kph
+      cityData.forecast.forecastday[i].day.maxwind_kph,
     );
   }
 }
@@ -129,4 +131,7 @@ function renderConditionImage() {
 const button = document.querySelector(".left_icon");
 button.addEventListener("click", () => {
   display();
+  showCity();
+  showCity();
+  showCity();
 });
