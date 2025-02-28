@@ -10,9 +10,14 @@ import {
 import { showingLoadingScreen } from "./View/loadingView";
 import { fetchData } from "./Model/api";
 import { getConditionImagePath } from "./Model/condition";
-import { display, showCity } from "./View/favoritesView";
+import {
+  showHeaderOfFavorite,
+  showCity,
+  changeBackground,
+} from "./View/favoritesView";
 
-const cities = ["Bielefeld", "Tomsk", "Kyoto"];
+const cities = ["Bielefeld", "Berlin", "Kyoto", "Tomsk"];
+let editBtnTapped = false;
 
 showingLoadingScreen();
 let cityData = await fetchData("Miland");
@@ -24,7 +29,7 @@ export function displayDetailView() {
   renderTwentyFourHour();
   renderThreeDayForecast();
   renderDetailInformation();
-  setBackgroundConditionImage(renderConditionImage());
+  setBackgroundConditionImage(renderConditionImage(cityData));
 }
 
 function renderTwentyFourHour() {
@@ -34,7 +39,7 @@ function renderTwentyFourHour() {
     showTwentyFourHourForecast(
       modifyTime(time),
       cityData.forecast.forecastday[selectedDay].hour[time].condition.icon,
-      cityData.forecast.forecastday[selectedDay].hour[time].temp_c,
+      cityData.forecast.forecastday[selectedDay].hour[time].temp_c
     );
     time = time + 1;
     if (time > 23) {
@@ -70,7 +75,7 @@ function renderThreeDayForecast() {
       day,
       `H: ${cityData.forecast.forecastday[i].day.maxtemp_c} L: ${cityData.forecast.forecastday[i].day.mintemp_c}`,
       cityData.forecast.forecastday[i].day.condition.icon,
-      cityData.forecast.forecastday[i].day.maxwind_kph,
+      cityData.forecast.forecastday[i].day.maxwind_kph
     );
   }
 }
@@ -121,17 +126,55 @@ function getConditionCode(city, currentHour) {
   return conditionCode;
 }
 
-function renderConditionImage() {
-  const code = getConditionCode(cityData, getCurrentHour(cityData));
-  const isDay = dayOrNight(cityData, getCurrentHour(cityData));
+function renderConditionImage(data) {
+  const code = getConditionCode(data, getCurrentHour(data));
+  const isDay = dayOrNight(data, getCurrentHour(data));
   const url = getConditionImagePath(code, isDay);
   return url;
 }
 
-const button = document.querySelector(".left_icon");
-button.addEventListener("click", () => {
-  display();
+const backButton = document.querySelector(".left_icon");
+backButton.addEventListener("click", displayFavoriteView);
+
+function displayFavoriteView() {
+  showHeaderOfFavorite();
+  changeBackground();
+  getAllFavoriteCities(cities);
+  allEventListener();
+}
+
+async function getAllFavoriteCities() {
   for (let i = 0; i < cities.length; i++) {
-    showCity(cities[i]);
+    let data = await fetchData(cities[i]);
+    showCity(
+      data.location.name,
+      data.location.country,
+      data.current.condition.text,
+      data.current.temp_c,
+      data.forecast.forecastday[0].day.maxtemp_c,
+      data.forecast.forecastday[0].day.mintemp_c,
+      renderConditionImage(data)
+    );
   }
-});
+}
+
+function editFavoriteCities() {
+  const allFavoriteCities = document.querySelectorAll(".deleteBox");
+  allFavoriteCities.forEach((element) => {
+    if (!editBtnTapped) {
+      element.style.display = "flex";
+    } else {
+      element.style.display = "none";
+    }
+  });
+  if (editBtnTapped) {
+    editBtnTapped = false;
+  } else {
+    editBtnTapped = true;
+  }
+}
+
+function allEventListener() {
+  const btn = document.querySelector(".header_favorite__button");
+  btn.addEventListener("click", editFavoriteCities);
+}
