@@ -66,9 +66,9 @@ export function showHeader() {
   // Anhängen des Path-Elements zum SVG und des SVGs zum rightIconDiv
   rightSvg.appendChild(rightPath);
   rightIconDiv.appendChild(rightSvg);
-  rightIconDiv.addEventListener("click", () => {
-    console.log("hello");
-  });
+  // rightIconDiv.addEventListener("click", () => {
+  //   console.log("hello");
+  // });
 
   // Anhängen der beiden Icon-Divs zum Header-Div
   headerDiv.appendChild(leftIconDiv);
