@@ -172,3 +172,10 @@ export async function displayPossibleCities(city, country) {
   });
   element.appendChild(box);
 }
+
+export function showNoFavorites() {
+  const el = document.createElement("span");
+  const el_text = document.createTextNode("keine Favoriten gespeichert");
+  el.appendChild(el_text);
+  app.appendChild(el);
+}

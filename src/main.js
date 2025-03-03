@@ -14,7 +14,7 @@ import {
   showHeaderOfFavorite,
   showCity,
   changeBackground,
-  displayPossibleCities,
+  showNoFavorites,
 } from "./View/favoritesView";
 import { loadCitiesFromLocalStorage } from "./Model/localStorage";
 
@@ -24,8 +24,6 @@ let editBtnTapped = false;
 showingLoadingScreen();
 let cityData = "";
 displayFavoriteView();
-// displayDetailView();
-
 export function displayDetailView(cityName) {
   cityData = cityName;
   showHeader();
@@ -143,9 +141,11 @@ function renderConditionImage(data) {
 export function displayFavoriteView() {
   showHeaderOfFavorite();
   changeBackground();
-  // displayPossibleCities();
-  // displayPossibleCities();
   cities = loadCitiesFromLocalStorage();
+  if (cities.length === 0) {
+    showNoFavorites();
+    return;
+  }
   getAllFavoriteCities(cities);
   allEventListener();
 }

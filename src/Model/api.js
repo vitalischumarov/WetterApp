@@ -20,3 +20,15 @@ export async function fetchCityNames(url) {
   let data = await response.json();
   return data;
 }
+
+export async function fetchSuggestions(name) {
+  const partOne = "http://api.weatherapi.com/v1/search.json?q=";
+  const partTwo = "key=4d9509708acc49a6a8740155253101";
+  const response = await fetch(partOne + name + partTwo);
+  if (!response.status) {
+    return;
+  }
+  let data = await response.json();
+  console.log(data);
+  return data;
+}
