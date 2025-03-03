@@ -5,6 +5,7 @@ import {
 } from "../Model/localStorage";
 
 const app = document.querySelector(".app");
+let currentId = "";
 
 export function showHeader() {
   const headerDiv = document.createElement("div");
@@ -77,7 +78,9 @@ export function showHeader() {
   app.appendChild(headerDiv);
 }
 
-export function showCurrentCityInformation(cityName) {
+export function showCurrentCityInformation(cityName, id) {
+  currentId = id;
+  console.log(`the selected id is ${currentId}`);
   checkIfSaved(cityName.location.name);
   const currentInformation = `
               <div class="currentWeather">
@@ -109,9 +112,9 @@ export function showCurrentCityInformation(cityName) {
   setTimeout(() => {
     const saveBtn = document.querySelector(".right_icon");
     saveBtn.addEventListener("click", () => {
-      saveCityToLocalStorage(cityName.location.name);
+      saveCityToLocalStorage(cityName.location.name, id);
       console.log("saved");
-      checkIfSaved(cityName.location.name);
+      checkIfSaved(id);
     });
   }, 0);
 }
@@ -194,10 +197,10 @@ function buttonAction() {
   console.log("hello");
 }
 
-function checkIfSaved(city) {
+function checkIfSaved(id) {
   const allSavedCities = loadCitiesFromLocalStorage();
   for (let i = 0; i < allSavedCities.length; i++) {
-    if (city === allSavedCities[i]) {
+    if (id === allSavedCities[i].id) {
       document.querySelector(".right_icon").style.display = "none";
       return;
     } else {

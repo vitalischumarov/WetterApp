@@ -1,5 +1,5 @@
 import "../Style/favoritesViewStyle.scss";
-import { fetchData, fetchCityNames } from "../Model/api";
+import { fetchData, fetchCityNames, fetchSuggestions } from "../Model/api";
 import { displayDetailView } from "../main";
 import { deleteElementFromLocalStorage } from "../Model/localStorage";
 
@@ -37,8 +37,16 @@ export function showHeaderOfFavorite() {
             document.querySelector(".inputField__element").value
           }&key=4d9509708acc49a6a8740155253101`,
         );
+        const resultNew = fetchSuggestions(
+          document.querySelector(".inputField__element").value,
+        );
+        console.log(resultNew);
         for (let i = 0; i < result.length; i++) {
-          displayPossibleCities(result[i].name, result[i].country);
+          displayPossibleCities(
+            result[i].name,
+            result[i].country,
+            result[i].id,
+          );
         }
       }, 2000);
     });
@@ -57,6 +65,7 @@ export function showCity(
   maxTemp,
   minTemp,
   img,
+  id,
 ) {
   // Erstellen des Containers für die Stadtkarte
   const cityEl = document.createElement("div");
@@ -66,7 +75,7 @@ export function showCity(
   const deleteBoxDiv = document.createElement("div");
   deleteBoxDiv.classList.add("deleteBox", name);
   deleteBoxDiv.addEventListener("click", () => {
-    deleteElementFromLocalStorage(name);
+    deleteElementFromLocalStorage(id);
   });
 
   // Erstellen des SVG-Icons
@@ -150,7 +159,8 @@ export function showCity(
   });
 }
 
-export async function displayPossibleCities(city, country) {
+export async function displayPossibleCities(city, country, id) {
+  console.log(id);
   let element = document.querySelector(".suggestionList");
   const box = document.createElement("div");
   box.classList.add("suggestionList__city");
@@ -168,7 +178,7 @@ export async function displayPossibleCities(city, country) {
   box.addEventListener("click", async () => {
     const cityEl = document.getElementById(city);
     let cityData = await fetchData(cityEl.innerHTML);
-    displayDetailView(cityData);
+    displayDetailView(cityData, id);
   });
   element.appendChild(box);
 }

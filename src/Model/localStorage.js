@@ -5,9 +5,13 @@ export function loadCitiesFromLocalStorage() {
   return citiesStorage;
 }
 
-export function saveCityToLocalStorage(name) {
+export function saveCityToLocalStorage(name, nr) {
+  const city = {
+    city: name,
+    id: nr,
+  };
   console.log(`new city is: ${name}`);
-  const newListOfCities = addCityToList(name);
+  const newListOfCities = addCityToList(city);
   const formatedList = JSON.stringify(newListOfCities);
   localStorage.setItem("allFavoriteCities", formatedList);
 }
@@ -25,21 +29,21 @@ function addCityToList(name) {
 }
 
 export function updateFavoriteList(favoriteList) {
-  console.log(`current List ist: ${favoriteList}`);
   const formatedList = JSON.stringify(favoriteList);
   localStorage.setItem("allFavoriteCities", formatedList);
 }
 
-export function deleteElementFromLocalStorage(city) {
+export function deleteElementFromLocalStorage(id) {
+  console.log(`folgende id soll gelöscht werden: ${id}`);
   let loadedCities = loadCitiesFromLocalStorage();
   let newCityList = [];
-  console.log(loadedCities);
   for (let i = 0; i < loadedCities.length; i++) {
-    console.log(`i hat den Wert ${i} mit der Stadt ${loadedCities[i]}`);
-    if (city !== loadedCities[i]) {
+    if (id !== loadedCities[i].id) {
       newCityList.push(loadedCities[i]);
     }
   }
+  console.log("neue Liste");
+  console.log(newCityList);
   updateFavoriteList(newCityList);
   displayFavoriteView();
 }

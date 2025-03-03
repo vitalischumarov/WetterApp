@@ -22,9 +22,10 @@ export async function fetchCityNames(url) {
 }
 
 export async function fetchSuggestions(name) {
-  const partOne = "http://api.weatherapi.com/v1/search.json?q=";
-  const partTwo = "key=4d9509708acc49a6a8740155253101";
-  const response = await fetch(partOne + name + partTwo);
+  const response = await fetch(
+    `https://api.weatherapi.com/v1/search.json?q=${name}&key=4d9509708acc49a6a8740155253101
+`,
+  );
   if (!response.status) {
     return;
   }

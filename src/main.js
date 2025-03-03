@@ -18,16 +18,16 @@ import {
 } from "./View/favoritesView";
 import { loadCitiesFromLocalStorage } from "./Model/localStorage";
 
-let cities = loadCitiesFromLocalStorage();
+let cities;
 let editBtnTapped = false;
 
 showingLoadingScreen();
 let cityData = "";
 displayFavoriteView();
-export function displayDetailView(cityName) {
+export function displayDetailView(cityName, id) {
   cityData = cityName;
   showHeader();
-  showCurrentCityInformation(cityData);
+  showCurrentCityInformation(cityData, id);
   renderTwentyFourHour();
   renderThreeDayForecast();
   renderDetailInformation();
@@ -150,9 +150,9 @@ export function displayFavoriteView() {
   allEventListener();
 }
 
-async function getAllFavoriteCities() {
-  for (let i = 0; i < cities.length; i++) {
-    let data = await fetchData(cities[i]);
+async function getAllFavoriteCities(loadedCities) {
+  for (let i = 0; i < loadedCities.length; i++) {
+    let data = await fetchData(loadedCities[i].city);
     showCity(
       data.location.name,
       data.location.country,
@@ -161,6 +161,7 @@ async function getAllFavoriteCities() {
       data.forecast.forecastday[0].day.maxtemp_c,
       data.forecast.forecastday[0].day.mintemp_c,
       renderConditionImage(data),
+      loadedCities[i].id,
     );
   }
 }
