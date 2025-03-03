@@ -11,3 +11,12 @@ export async function fetchData(cityName) {
   let data = await response.json();
   return data;
 }
+
+export async function fetchCityNames(url) {
+  let response = await fetch(url);
+  if (!response.status) {
+    return;
+  }
+  let data = await response.json();
+  return data;
+}

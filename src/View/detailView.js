@@ -1,47 +1,84 @@
 import "../Style/detailViewStyle.scss";
+import {
+  loadCitiesFromLocalStorage,
+  saveCityToLocalStorage,
+} from "../Model/localStorage";
 
 const app = document.querySelector(".app");
 
 export function showHeader() {
-  const header = `<div class="header">
-                  <div class="left_icon">
-                      <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          class="backIcon"
-                      >
-                          <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"
-                          />
-                      </svg>
-                  </div>
-                  <div class="right_icon">
-                      <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="currentColor"
-                          class="saveButtonIcon"
-                      >
-                          <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
-                          />
-                      </svg>
-                  </div>
-              </div>`;
+  const headerDiv = document.createElement("div");
+  headerDiv.classList.add("header");
 
-  app.innerHTML = header;
+  // Erstellen des Divs für das linke Icon
+  const leftIconDiv = document.createElement("div");
+  leftIconDiv.classList.add("left_icon");
+
+  // Erstellen des SVGs für das "back"-Icon
+  const leftSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  leftSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  leftSvg.setAttribute("fill", "none");
+  leftSvg.setAttribute("viewBox", "0 0 24 24");
+  leftSvg.setAttribute("stroke-width", "1.5");
+  leftSvg.setAttribute("stroke", "currentColor");
+  leftSvg.classList.add("backIcon");
+
+  // Erstellen des Path-Elements für das "back"-Icon
+  const leftPath = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "path",
+  );
+  leftPath.setAttribute("stroke-linecap", "round");
+  leftPath.setAttribute("stroke-linejoin", "round");
+  leftPath.setAttribute("d", "M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3");
+
+  // Anhängen des Path-Elements zum SVG und des SVGs zum leftIconDiv
+  leftSvg.appendChild(leftPath);
+  leftIconDiv.appendChild(leftSvg);
+
+  // Erstellen des Divs für das rechte Icon
+  const rightIconDiv = document.createElement("div");
+  rightIconDiv.classList.add("right_icon");
+
+  // Erstellen des SVGs für das "save"-Icon
+  const rightSvg = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "svg",
+  );
+  rightSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  rightSvg.setAttribute("fill", "none");
+  rightSvg.setAttribute("viewBox", "0 0 24 24");
+  rightSvg.setAttribute("stroke-width", "1.5");
+  rightSvg.setAttribute("stroke", "currentColor");
+  rightSvg.classList.add("saveButtonIcon");
+  // Erstellen des Path-Elements für das "save"-Icon
+  const rightPath = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "path",
+  );
+  rightPath.setAttribute("stroke-linecap", "round");
+  rightPath.setAttribute("stroke-linejoin", "round");
+  rightPath.setAttribute(
+    "d",
+    "M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z",
+  );
+
+  // Anhängen des Path-Elements zum SVG und des SVGs zum rightIconDiv
+  rightSvg.appendChild(rightPath);
+  rightIconDiv.appendChild(rightSvg);
+  rightIconDiv.addEventListener("click", () => {
+    console.log("hello");
+  });
+
+  // Anhängen der beiden Icon-Divs zum Header-Div
+  headerDiv.appendChild(leftIconDiv);
+  headerDiv.appendChild(rightIconDiv);
+  app.innerHTML = "";
+  app.appendChild(headerDiv);
 }
 
 export function showCurrentCityInformation(cityName) {
+  checkIfSaved(cityName.location.name);
   const currentInformation = `
               <div class="currentWeather">
                   <span class="currentWeather__mainInformation city text">${cityName.location.name}</span>
@@ -67,6 +104,16 @@ export function showCurrentCityInformation(cityName) {
                 <hr />
               </div>`;
   app.innerHTML += currentInformation;
+
+  // Wieso kann ich ihn nicht normal mit rightIconDiv.addEventListener....
+  setTimeout(() => {
+    const saveBtn = document.querySelector(".right_icon");
+    saveBtn.addEventListener("click", () => {
+      saveCityToLocalStorage(cityName.location.name);
+      console.log("saved");
+      checkIfSaved(cityName.location.name);
+    });
+  }, 0);
 }
 
 export function showTwentyFourHourForecast(time, icon, temperature) {
@@ -106,7 +153,7 @@ export function showDetailInformation(
   sunrise,
   sunset,
   uvindex,
-  rain
+  rain,
 ) {
   const detailView = `
     <div class="detailView">
@@ -145,4 +192,15 @@ export function setBackgroundConditionImage(url) {
 
 function buttonAction() {
   console.log("hello");
+}
+
+function checkIfSaved(city) {
+  const allSavedCities = loadCitiesFromLocalStorage();
+  for (let i = 0; i < allSavedCities.length; i++) {
+    if (city === allSavedCities[i]) {
+      document.querySelector(".right_icon").style.display = "none";
+      return;
+    } else {
+    }
+  }
 }

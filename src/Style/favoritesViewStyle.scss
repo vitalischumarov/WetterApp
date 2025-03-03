@@ -22,12 +22,24 @@
 
 .inputField {
     width: 98%;
-    margin-bottom: 2rem;
     display: flex;
     justify-content: center;
     &__element {
         width: 90%;
         height: 2rem;
+    }
+}
+
+.suggestionList {
+    background-color: black;
+    width: 90%;
+    margin-bottom: 2rem;
+    &__city {
+        border: solid 0.1ex gray;
+        color: white;
+        padding: 0.3rem;
+        display: flex;
+        flex-direction: column;
     }
 }
 

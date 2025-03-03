@@ -14,22 +14,29 @@ import {
   showHeaderOfFavorite,
   showCity,
   changeBackground,
+  displayPossibleCities,
 } from "./View/favoritesView";
+import { loadCitiesFromLocalStorage } from "./Model/localStorage";
 
-const cities = ["Bielefeld", "Berlin", "Kyoto", "Tomsk"];
+let cities = loadCitiesFromLocalStorage();
 let editBtnTapped = false;
 
 showingLoadingScreen();
-let cityData = await fetchData("Miland");
-displayDetailView();
+let cityData = "";
+displayFavoriteView();
+// displayDetailView();
 
-export function displayDetailView() {
+export function displayDetailView(cityName) {
+  cityData = cityName;
   showHeader();
   showCurrentCityInformation(cityData);
   renderTwentyFourHour();
   renderThreeDayForecast();
   renderDetailInformation();
   setBackgroundConditionImage(renderConditionImage(cityData));
+  document.querySelector(".left_icon").addEventListener("click", () => {
+    displayFavoriteView();
+  });
 }
 
 function renderTwentyFourHour() {
@@ -39,7 +46,7 @@ function renderTwentyFourHour() {
     showTwentyFourHourForecast(
       modifyTime(time),
       cityData.forecast.forecastday[selectedDay].hour[time].condition.icon,
-      cityData.forecast.forecastday[selectedDay].hour[time].temp_c
+      cityData.forecast.forecastday[selectedDay].hour[time].temp_c,
     );
     time = time + 1;
     if (time > 23) {
@@ -75,7 +82,7 @@ function renderThreeDayForecast() {
       day,
       `H: ${cityData.forecast.forecastday[i].day.maxtemp_c} L: ${cityData.forecast.forecastday[i].day.mintemp_c}`,
       cityData.forecast.forecastday[i].day.condition.icon,
-      cityData.forecast.forecastday[i].day.maxwind_kph
+      cityData.forecast.forecastday[i].day.maxwind_kph,
     );
   }
 }
@@ -133,12 +140,12 @@ function renderConditionImage(data) {
   return url;
 }
 
-const backButton = document.querySelector(".left_icon");
-backButton.addEventListener("click", displayFavoriteView);
-
-function displayFavoriteView() {
+export function displayFavoriteView() {
   showHeaderOfFavorite();
   changeBackground();
+  // displayPossibleCities();
+  // displayPossibleCities();
+  cities = loadCitiesFromLocalStorage();
   getAllFavoriteCities(cities);
   allEventListener();
 }
@@ -153,7 +160,7 @@ async function getAllFavoriteCities() {
       data.current.temp_c,
       data.forecast.forecastday[0].day.maxtemp_c,
       data.forecast.forecastday[0].day.mintemp_c,
-      renderConditionImage(data)
+      renderConditionImage(data),
     );
   }
 }
