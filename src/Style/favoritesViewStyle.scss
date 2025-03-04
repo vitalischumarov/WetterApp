@@ -24,6 +24,7 @@
     width: 98%;
     display: flex;
     justify-content: center;
+    position: relative;
     &__element {
         width: 90%;
         height: 2rem;
@@ -34,6 +35,8 @@
     background-color: black;
     width: 90%;
     margin-bottom: 2rem;
+    position: absolut;
+    z-index: 2;
     &__city {
         border: solid 0.1ex gray;
         color: white;
@@ -44,6 +47,7 @@
 }
 
 .favoriteList {
+    position: absolut;
     width: 98%;
 }
 

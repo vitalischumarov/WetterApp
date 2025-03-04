@@ -44,6 +44,7 @@ export function showHeaderOfFavorite() {
           document.querySelector(".inputField__element").value,
         );
         console.log(resultNew);
+        document.querySelector(".suggestionList").innerHTML = "";
         for (let i = 0; i < result.length; i++) {
           displayPossibleCities(
             result[i].name,
@@ -170,7 +171,6 @@ export function showCity(
 }
 
 export async function displayPossibleCities(city, country, id) {
-  console.log(id);
   let element = document.querySelector(".suggestionList");
   const box = document.createElement("div");
   box.classList.add("suggestionList__city");
@@ -196,6 +196,7 @@ export async function displayPossibleCities(city, country, id) {
 export function showNoFavorites() {
   const el = document.createElement("span");
   const el_text = document.createTextNode("keine Favoriten gespeichert");
+  el.style.color = "white";
   el.appendChild(el_text);
   app.appendChild(el);
 }
