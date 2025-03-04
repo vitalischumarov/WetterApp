@@ -71,18 +71,15 @@ export function showCity(
   img,
   id,
 ) {
-  // Erstellen des Containers für die Stadtkarte
   const cityEl = document.createElement("div");
   cityEl.classList.add("favorite");
 
-  // Erstellen der deleteBox
   const deleteBoxDiv = document.createElement("div");
   deleteBoxDiv.classList.add("deleteBox", name);
   deleteBoxDiv.addEventListener("click", () => {
     deleteElementFromLocalStorage(id);
   });
 
-  // Erstellen des SVG-Icons
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
   svg.setAttribute("fill", "none");
@@ -187,7 +184,9 @@ export async function displayPossibleCities(city, country, id) {
   box.appendChild(countryText);
   box.addEventListener("click", async () => {
     const cityEl = document.getElementById(city);
-    let cityData = await fetchData(cityEl.innerHTML);
+    // HIER HABE ICH DIE ID HINZUGEFUEGT!!!
+    let cityData = await fetchData(id);
+    console.log(`das ist die id: ${id}`);
     displayDetailView(cityData, id);
   });
   element.appendChild(box);
@@ -200,3 +199,8 @@ export function showNoFavorites() {
   el.appendChild(el_text);
   app.appendChild(el);
 }
+
+document.querySelector(".app").addEventListener("click", () => {
+  document.querySelector(".inputField__element").value = "";
+  document.querySelector(".suggestionList").innerHTML = "";
+});

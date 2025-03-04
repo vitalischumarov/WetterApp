@@ -164,7 +164,7 @@ export function displayFavoriteView() {
 
 async function getAllFavoriteCities(loadedCities) {
   for (let i = 0; i < loadedCities.length; i++) {
-    let data = await fetchData(loadedCities[i].city);
+    let data = await fetchData(loadedCities[i].id);
     showCity(
       data.location.name,
       data.location.country,

@@ -1,3 +1,11 @@
+body {
+    display: relative;
+}
+
+.app {
+    position: relative;
+}
+
 .header_favorite {
     width: 90%;
     display: flex;
@@ -17,6 +25,7 @@
         border: 0;
         color: white;
         font-size: 1.2rem;
+        cursor: pointer;
     }
 }
 
@@ -24,7 +33,6 @@
     width: 98%;
     display: flex;
     justify-content: center;
-    position: relative;
     &__element {
         width: 90%;
         height: 2rem;
@@ -35,19 +43,24 @@
     background-color: black;
     width: 90%;
     margin-bottom: 2rem;
-    position: absolut;
-    z-index: 2;
+    position: absolute;
+    top: 19%;
     &__city {
         border: solid 0.1ex gray;
         color: white;
         padding: 0.3rem;
         display: flex;
         flex-direction: column;
+        z-index: 2;
+        cursor: pointer;
+    }
+    &__city:hover {
+        background-color: darkgray;
     }
 }
 
 .favoriteList {
-    position: absolut;
+    top: 10rem;
     width: 98%;
 }
 
