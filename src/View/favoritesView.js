@@ -1,7 +1,10 @@
 import "../Style/favoritesViewStyle.scss";
 import { fetchData, fetchCityNames, fetchSuggestions } from "../Model/api";
 import { displayDetailView } from "../main";
-import { deleteElementFromLocalStorage } from "../Model/localStorage";
+import {
+  deleteElementFromLocalStorage,
+  loadCitiesFromLocalStorage,
+} from "../Model/localStorage";
 
 const app = document.querySelector(".app");
 
@@ -155,7 +158,14 @@ export function showCity(
   // Event-Listener für das Klick-Ereignis auf die Stadt
   document.getElementById(name).addEventListener("click", async () => {
     let cityData = await fetchData(name);
-    displayDetailView(cityData);
+    let id = "";
+    const allCities = loadCitiesFromLocalStorage();
+    for (let i = 0; i < allCities.length; i++) {
+      if (allCities[i].city == name) {
+        id = allCities[i].id;
+      }
+    }
+    displayDetailView(cityData, id);
   });
 }
 

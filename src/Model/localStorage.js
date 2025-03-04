@@ -47,3 +47,12 @@ export function deleteElementFromLocalStorage(id) {
   updateFavoriteList(newCityList);
   displayFavoriteView();
 }
+
+export function checkIfKeyAvailable() {
+  const key = "allFavoriteCities";
+  if (localStorage.getItem(key) === null) {
+    return false;
+  } else {
+    return true;
+  }
+}

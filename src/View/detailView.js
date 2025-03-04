@@ -81,7 +81,7 @@ export function showHeader() {
 export function showCurrentCityInformation(cityName, id) {
   currentId = id;
   console.log(`the selected id is ${currentId}`);
-  checkIfSaved(cityName.location.name);
+  checkIfSaved(currentId);
   const currentInformation = `
               <div class="currentWeather">
                   <span class="currentWeather__mainInformation city text">${cityName.location.name}</span>
@@ -201,6 +201,7 @@ function checkIfSaved(id) {
   const allSavedCities = loadCitiesFromLocalStorage();
   for (let i = 0; i < allSavedCities.length; i++) {
     if (id === allSavedCities[i].id) {
+      console.log("id gefunden");
       document.querySelector(".right_icon").style.display = "none";
       return;
     } else {

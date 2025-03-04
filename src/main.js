@@ -16,10 +16,15 @@ import {
   changeBackground,
   showNoFavorites,
 } from "./View/favoritesView";
-import { loadCitiesFromLocalStorage } from "./Model/localStorage";
+import {
+  loadCitiesFromLocalStorage,
+  checkIfKeyAvailable,
+} from "./Model/localStorage";
 
 let cities;
 let editBtnTapped = false;
+
+let apiAvailable = checkIfKeyAvailable();
 
 showingLoadingScreen();
 let cityData = "";
@@ -138,11 +143,18 @@ function renderConditionImage(data) {
   return url;
 }
 
+// HIER WEITER!!!! Local Storag muss geprüfen
 export function displayFavoriteView() {
   showHeaderOfFavorite();
   changeBackground();
   cities = loadCitiesFromLocalStorage();
-  if (cities.length === 0) {
+  if (apiAvailable === false) {
+    showNoFavorites();
+    localStorage.setItem("allFavoriteCities", JSON.stringify([]));
+    apiAvailable = checkIfKeyAvailable();
+    console.log(`status des local Storage: ${apiAvailable}`);
+    return;
+  } else if (cities.length === 0) {
     showNoFavorites();
     return;
   }
