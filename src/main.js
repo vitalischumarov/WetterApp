@@ -49,7 +49,7 @@ function renderTwentyFourHour() {
     showTwentyFourHourForecast(
       modifyTime(time),
       cityData.forecast.forecastday[selectedDay].hour[time].condition.icon,
-      cityData.forecast.forecastday[selectedDay].hour[time].temp_c,
+      cityData.forecast.forecastday[selectedDay].hour[time].temp_c
     );
     time = time + 1;
     if (time > 23) {
@@ -85,7 +85,7 @@ function renderThreeDayForecast() {
       day,
       `H: ${cityData.forecast.forecastday[i].day.maxtemp_c} L: ${cityData.forecast.forecastday[i].day.mintemp_c}`,
       cityData.forecast.forecastday[i].day.condition.icon,
-      cityData.forecast.forecastday[i].day.maxwind_kph,
+      cityData.forecast.forecastday[i].day.maxwind_kph
     );
   }
 }
@@ -140,10 +140,10 @@ function renderConditionImage(data) {
   const code = getConditionCode(data, getCurrentHour(data));
   const isDay = dayOrNight(data, getCurrentHour(data));
   const url = getConditionImagePath(code, isDay);
+  console.log(`url: ${url}`);
   return url;
 }
 
-// HIER WEITER!!!! Local Storag muss geprüfen
 export function displayFavoriteView() {
   showHeaderOfFavorite();
   changeBackground();
@@ -173,7 +173,7 @@ async function getAllFavoriteCities(loadedCities) {
       data.forecast.forecastday[0].day.maxtemp_c,
       data.forecast.forecastday[0].day.mintemp_c,
       renderConditionImage(data),
-      loadedCities[i].id,
+      loadedCities[i].id
     );
   }
 }

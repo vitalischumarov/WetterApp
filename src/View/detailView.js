@@ -27,7 +27,7 @@ export function showHeader() {
   // Erstellen des Path-Elements für das "back"-Icon
   const leftPath = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "path",
+    "path"
   );
   leftPath.setAttribute("stroke-linecap", "round");
   leftPath.setAttribute("stroke-linejoin", "round");
@@ -44,7 +44,7 @@ export function showHeader() {
   // Erstellen des SVGs für das "save"-Icon
   const rightSvg = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "svg",
+    "svg"
   );
   rightSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
   rightSvg.setAttribute("fill", "none");
@@ -55,13 +55,13 @@ export function showHeader() {
   // Erstellen des Path-Elements für das "save"-Icon
   const rightPath = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "path",
+    "path"
   );
   rightPath.setAttribute("stroke-linecap", "round");
   rightPath.setAttribute("stroke-linejoin", "round");
   rightPath.setAttribute(
     "d",
-    "M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z",
+    "M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
   );
 
   // Anhängen des Path-Elements zum SVG und des SVGs zum rightIconDiv
@@ -156,7 +156,7 @@ export function showDetailInformation(
   sunrise,
   sunset,
   uvindex,
-  rain,
+  rain
 ) {
   const detailView = `
     <div class="detailView">
@@ -190,6 +190,7 @@ export function showDetailInformation(
 }
 
 export function setBackgroundConditionImage(url) {
+  console.log(url);
   app.style.backgroundImage = `url(${url})`;
 }
 

@@ -51,7 +51,7 @@ export function showHeaderOfFavorite() {
             result[i].id
           );
         }
-      }, 2000);
+      }, 500);
     });
 }
 
