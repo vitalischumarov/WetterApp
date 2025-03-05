@@ -35,7 +35,7 @@ export function showHeaderOfFavorite() {
       clearTimeout(timeSinceTyped);
       timeSinceTyped = setTimeout(async function () {
         const result = await fetchCityNames(
-          `http://api.weatherapi.com/v1/search.json?q=${
+          `https://api.weatherapi.com/v1/search.json?q=${
             document.querySelector(".inputField__element").value
           }&key=4d9509708acc49a6a8740155253101`
         );
