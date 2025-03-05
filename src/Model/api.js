@@ -23,7 +23,7 @@ export async function fetchCityNames(url) {
 
 export async function fetchSuggestions(name) {
   const response = await fetch(
-    `https://cors-anywhere.herokuapp.com/https://api.weatherapi.com/v1/search.json?q=${name}&key=4d9509708acc49a6a8740155253101
+    `https://api.weatherapi.com/v1/search.json?q=${name}&key=4d9509708acc49a6a8740155253101
 `
   );
   if (!response.status) {
