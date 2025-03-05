@@ -45,17 +45,23 @@
   &__city {
     border: solid 0.1ex gray;
     color: white;
-    padding: 0.3rem;
+    padding: 0.5rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+
     z-index: 2;
     cursor: pointer;
     border-radius: 10px;
+    height: 3.5rem;
   }
   &__city:hover {
-    // position: absolute;
     background-color: darkgray;
   }
+}
+
+.cityNameSuggestion {
+  font-size: 1.5rem;
 }
 
 .favoriteList {
