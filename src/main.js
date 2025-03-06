@@ -138,7 +138,6 @@ function renderConditionImage(data) {
   const code = getConditionCode(data, getCurrentHour(data));
   const isDay = dayOrNight(data, getCurrentHour(data));
   const url = getConditionImagePath(code, isDay);
-  console.log(`url: ${url}`);
   return url;
 }
 
@@ -151,7 +150,6 @@ export function displayFavoriteView() {
     showNoFavorites();
     localStorage.setItem("allFavoriteCities", JSON.stringify([]));
     apiAvailable = checkIfKeyAvailable();
-    console.log(`status des local Storage: ${apiAvailable}`);
     return;
   } else if (cities.length === 0) {
     showNoFavorites();

@@ -37,9 +37,7 @@ export function showHeaderOfFavorite() {
         const result = await fetchSuggestions(
           document.querySelector(".inputField__element").value
         );
-        // const resultNew = fetchSuggestions(
-        //   document.querySelector(".inputField__element").value
-        // );
+
         document.querySelector(".suggestionList").innerHTML = "";
         for (let i = 0; i < result.length; i++) {
           displayPossibleCities(
@@ -177,7 +175,6 @@ export async function displayPossibleCities(city, country, id) {
     disableFavoriteView();
     const cityEl = document.getElementById(city);
     let cityData = await fetchData(id);
-    console.log(`das ist die id: ${id}`);
     displayDetailView(cityData, id);
   });
   element.appendChild(box);
