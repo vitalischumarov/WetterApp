@@ -26,7 +26,6 @@ let editBtnTapped = false;
 
 let apiAvailable = checkIfKeyAvailable();
 
-showingLoadingScreen();
 let cityData = "";
 displayFavoriteView();
 export function displayDetailView(cityName, id) {
