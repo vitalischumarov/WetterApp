@@ -1,147 +1,147 @@
 @use "__mixin" as *;
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: lightgray;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: lightgray;
 }
 
 .app {
-    width: 100%;
-    height: 100%;
-    background-color: rgb(40 44 53);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-size: cover;
-    overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(40 44 53);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-size: cover;
+  overflow-y: auto;
 }
 
 .text {
-    color: white;
+  color: white;
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem;
-    width: 90%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  width: 90%;
 }
 
 .left_icon,
 .right_icon {
-    height: 1.5rem;
-    width: 1.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 .backIcon {
-    color: white;
+  color: white;
 }
 
 .saveButtonIcon {
-    color: yellow;
+  color: yellow;
 }
 
 .currentWeather {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 2rem;
 }
 
 .forecastWeather {
-    @include dataArea;
+  @include dataArea;
 }
 
 .city {
-    font-size: 1.3rem;
-    padding-bottom: 0.4rem;
+  font-size: 1.3rem;
+  padding-bottom: 0.4rem;
 }
 
 .weather {
-    font-size: 2.5rem;
-    padding-bottom: 0.4rem;
+  font-size: 2.5rem;
+  padding-bottom: 0.4rem;
 }
 
 .forecastWeather__text {
-    text-align: center;
+  text-align: center;
 }
 
 .allForcasts {
-    display: flex;
-    gap: 2rem;
-    overflow-x: auto;
-    padding-top: 0.5rem;
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding-top: 0.5rem;
 }
 
 .allForcasts::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .forecastData {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .threeDayForecast {
-    @include dataArea;
+  @include dataArea;
 }
 
 .forecastToday {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 
-    &__day {
-        width: 15%;
-    }
+  &__day {
+    width: 15%;
+  }
 
-    &__icon {
-        width: 10%;
-    }
+  &__icon {
+    width: 10%;
+  }
 }
 
 .img_threeDayForecast {
-    height: 2rem;
+  height: 2rem;
 }
 
 .detailView {
-    width: 92%;
-    margin-top: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.4rem;
+  width: 92%;
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
 }
 
 .singleBox {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    width: 49%;
-    height: 6rem;
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 49%;
+  height: 6rem;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
 }
 
 @media screen and (min-width: 400px) {
-    .app {
-        height: 900px;
-        width: 400px;
-    }
+  .app {
+    height: 700px;
+    width: 400px;
+  }
 }

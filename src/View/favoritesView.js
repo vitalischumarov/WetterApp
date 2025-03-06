@@ -5,6 +5,7 @@ import {
   deleteElementFromLocalStorage,
   loadCitiesFromLocalStorage,
 } from "../Model/localStorage";
+import { showingLoadingScreen } from "./loadingView";
 
 const app = document.querySelector(".app");
 
@@ -147,6 +148,7 @@ export function showCity(
   document.querySelector(".favoriteList").appendChild(cityEl);
 
   document.getElementById(name).addEventListener("click", async () => {
+    showingLoadingScreen();
     let cityData = await fetchData(name);
     let id = "";
     const allCities = loadCitiesFromLocalStorage();
@@ -175,6 +177,7 @@ export async function displayPossibleCities(city, country, id) {
   box.appendChild(cityName);
   box.appendChild(countryText);
   box.addEventListener("click", async () => {
+    showingLoadingScreen();
     const cityEl = document.getElementById(city);
     let cityData = await fetchData(id);
     console.log(`das ist die id: ${id}`);
