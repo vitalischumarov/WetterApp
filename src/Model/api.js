@@ -23,6 +23,7 @@ export async function fetchCityNames(url) {
     return;
   }
   let data = await response.json();
+  disableLoading();
   return data;
 }
 
@@ -32,9 +33,10 @@ export async function fetchSuggestions(name) {
 `
   );
   if (!response.status) {
+    disableLoading();
     return;
   }
   let data = await response.json();
-  console.log(data);
+  disableLoading();
   return data;
 }
