@@ -13,6 +13,13 @@ export function showingLoadingScreen() {
 export function disableLoading() {
   const spinners = document.querySelectorAll(".loadingContainer");
   spinners.forEach((element) => {
-    element.classList.add("hide");
+    element.remove();
   });
+}
+
+export function disableFavoriteView() {
+  document.querySelector(".header_favorite").classList.add("hide");
+  document.querySelector(".inputField").classList.add("hide");
+  document.querySelector(".suggestionList").classList.add("hide");
+  document.querySelector(".favoriteList").classList.add("hide");
 }

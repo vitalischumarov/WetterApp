@@ -1,14 +1,14 @@
 import "../Style/favoritesViewStyle.scss";
-import { fetchData, fetchCityNames, fetchSuggestions } from "../Model/api";
+import { fetchData, fetchSuggestions } from "../Model/api";
 import { displayDetailView } from "../main";
 import {
   deleteElementFromLocalStorage,
   loadCitiesFromLocalStorage,
 } from "../Model/localStorage";
+import { disableFavoriteView } from "./loadingView";
 
 const app = document.querySelector(".app");
 
-const cityName = "";
 let timeSinceTyped;
 
 export function showHeaderOfFavorite() {
@@ -34,15 +34,12 @@ export function showHeaderOfFavorite() {
     .addEventListener("input", async () => {
       clearTimeout(timeSinceTyped);
       timeSinceTyped = setTimeout(async function () {
-        const result = await fetchCityNames(
-          `https://api.weatherapi.com/v1/search.json?q=${
-            document.querySelector(".inputField__element").value
-          }&key=4d9509708acc49a6a8740155253101`
-        );
-        const resultNew = fetchSuggestions(
+        const result = await fetchSuggestions(
           document.querySelector(".inputField__element").value
         );
-        console.log(resultNew);
+        // const resultNew = fetchSuggestions(
+        //   document.querySelector(".inputField__element").value
+        // );
         document.querySelector(".suggestionList").innerHTML = "";
         for (let i = 0; i < result.length; i++) {
           displayPossibleCities(
@@ -62,6 +59,7 @@ export function changeBackground() {
 
 export function showCity(
   name,
+
   country,
   condition,
   temp,
@@ -147,6 +145,7 @@ export function showCity(
   document.querySelector(".favoriteList").appendChild(cityEl);
 
   document.getElementById(name).addEventListener("click", async () => {
+    disableFavoriteView();
     let cityData = await fetchData(name);
     let id = "";
     const allCities = loadCitiesFromLocalStorage();
@@ -175,6 +174,7 @@ export async function displayPossibleCities(city, country, id) {
   box.appendChild(cityName);
   box.appendChild(countryText);
   box.addEventListener("click", async () => {
+    disableFavoriteView();
     const cityEl = document.getElementById(city);
     let cityData = await fetchData(id);
     console.log(`das ist die id: ${id}`);

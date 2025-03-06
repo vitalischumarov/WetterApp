@@ -7,7 +7,6 @@ import {
   showDetailInformation,
   setBackgroundConditionImage,
 } from "./View/detailView";
-import { showingLoadingScreen } from "./View/loadingView";
 import { fetchData } from "./Model/api";
 import { getConditionImagePath } from "./Model/condition";
 import {
@@ -22,7 +21,7 @@ import {
 } from "./Model/localStorage";
 
 let cities;
-let editBtnTapped = false;
+export let editBtnTapped = false;
 
 let apiAvailable = checkIfKeyAvailable();
 
@@ -144,6 +143,7 @@ function renderConditionImage(data) {
 }
 
 export function displayFavoriteView() {
+  editBtnTapped = false;
   showHeaderOfFavorite();
   changeBackground();
   cities = loadCitiesFromLocalStorage();

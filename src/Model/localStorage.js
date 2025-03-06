@@ -43,7 +43,6 @@ export function deleteElementFromLocalStorage(id) {
     }
   }
   console.log("neue Liste");
-  console.log(newCityList);
   updateFavoriteList(newCityList);
   displayFavoriteView();
 }
