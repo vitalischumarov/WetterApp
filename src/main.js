@@ -180,8 +180,11 @@ function editFavoriteCities() {
   allFavoriteCities.forEach((element) => {
     if (!editBtnTapped) {
       element.style.display = "flex";
+      document.querySelector(".header_favorite__button").innerHTML = "Fertig";
     } else {
       element.style.display = "none";
+      document.querySelector(".header_favorite__button").innerHTML =
+        "Bearbeiten";
     }
   });
   if (editBtnTapped) {
