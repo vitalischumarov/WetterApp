@@ -37,9 +37,11 @@ export function showHeaderOfFavorite() {
         const result = await fetchSuggestions(
           document.querySelector(".inputField__element").value
         );
-
+        console.log("result:");
+        console.log(result);
         document.querySelector(".suggestionList").innerHTML = "";
         for (let i = 0; i < result.length; i++) {
+          console.log;
           displayPossibleCities(
             result[i].name,
             result[i].country,
@@ -157,10 +159,11 @@ export function showCity(
 }
 
 export async function displayPossibleCities(city, country, id) {
+  console.log(city);
   let element = document.querySelector(".suggestionList");
   const box = document.createElement("div");
   box.classList.add("suggestionList__city");
-  box.classList.add(city);
+  box.classList.add(id);
   const cityName = document.createElement("span");
   cityName.classList.add("cityNameSuggestion");
   cityName.setAttribute("id", city);
