@@ -14,8 +14,8 @@ let timeSinceTyped;
 export function showHeaderOfFavorite() {
   const basicStructure = `
           <div class="header_favorite">
-              <span class="header_favorite__text">Wetter</span>
-              <button class="header_favorite__button">Bearbeiten</button>
+              <span class="header_favorite__text header_text">Wetter</span>
+              <button class="header_favorite__button header_text">Bearbeiten</button>
           </div>
           <div class="inputField">
               <input
@@ -37,11 +37,8 @@ export function showHeaderOfFavorite() {
         const result = await fetchSuggestions(
           document.querySelector(".inputField__element").value
         );
-        console.log("result:");
-        console.log(result);
         document.querySelector(".suggestionList").innerHTML = "";
         for (let i = 0; i < result.length; i++) {
-          console.log;
           displayPossibleCities(
             result[i].name,
             result[i].country,
@@ -159,7 +156,6 @@ export function showCity(
 }
 
 export async function displayPossibleCities(city, country, id) {
-  console.log(city);
   let element = document.querySelector(".suggestionList");
   const box = document.createElement("div");
   box.classList.add("suggestionList__city");

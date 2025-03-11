@@ -37,7 +37,6 @@ export async function fetchSuggestions(name) {
     return;
   }
   let data = await response.json();
-  console.log(data);
   disableLoading();
   return data;
 }

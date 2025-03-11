@@ -25,12 +25,16 @@
   }
 }
 
+.header_text {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .inputField {
-  width: 98%;
+  width: 90%;
   display: flex;
   justify-content: center;
   &__element {
-    width: 90%;
+    width: 100%;
     height: 2rem;
   }
 }
@@ -39,9 +43,8 @@
   background-color: black;
   width: 90%;
   margin-bottom: 2rem;
-  //   position: absolute;
-  //   top: 19%;
   z-index: 2;
+
   &__city {
     border: solid 0.1ex gray;
     color: white;
@@ -70,6 +73,7 @@
   width: 90%;
   display: flex;
   flex-direction: column;
+  border: 1px solid white;
 }
 
 .favorite {
@@ -96,7 +100,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
   background-size: cover;
   padding: 1rem;
   border-radius: 5px;
