@@ -188,6 +188,8 @@ export function showNoFavorites() {
 }
 
 document.querySelector(".app").addEventListener("click", () => {
-  document.querySelector(".inputField__element").value = "";
-  document.querySelector(".suggestionList").innerHTML = "";
+  if (document.querySelector(".favoriteList")) {
+    document.querySelector(".inputField__element").value = "";
+    document.querySelector(".suggestionList").innerHTML = "";
+  }
 });
