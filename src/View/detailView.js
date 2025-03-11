@@ -67,9 +67,6 @@ export function showHeader() {
   // Anhängen des Path-Elements zum SVG und des SVGs zum rightIconDiv
   rightSvg.appendChild(rightPath);
   rightIconDiv.appendChild(rightSvg);
-  // rightIconDiv.addEventListener("click", () => {
-  //   console.log("hello");
-  // });
 
   // Anhängen der beiden Icon-Divs zum Header-Div
   headerDiv.appendChild(leftIconDiv);
@@ -80,7 +77,6 @@ export function showHeader() {
 
 export function showCurrentCityInformation(cityName, id) {
   currentId = id;
-  console.log(`the selected id is ${currentId}`);
   checkIfSaved(currentId);
   const currentInformation = `
               <div class="currentWeather">
@@ -113,7 +109,6 @@ export function showCurrentCityInformation(cityName, id) {
     const saveBtn = document.querySelector(".right_icon");
     saveBtn.addEventListener("click", () => {
       saveCityToLocalStorage(cityName.location.name, id);
-      console.log("saved");
       checkIfSaved(id);
     });
   }, 0);
@@ -139,12 +134,12 @@ export function showTwentyFourHourForecast(time, icon, temperature) {
 export function showThreeDaysForecast(day, temp, icon, wind) {
   const dayForecast = `
     <div class="forecastToday">
-      <div class="forecastToday__day text">${day}</div>
+      <div class="forecastToday__day text text_detail">${day}</div>
       <div class="forecastToday__icon">
         <img src="${icon}" alt="Wetter Icon" class="img_threeDayForecast">
       </div>
-      <div class="forecastToday__temp text">${temp}°C</div>
-      <div class="forecastToday__wind text">Wind: ${wind} km/h</div>
+      <div class="forecastToday__temp text text_detail">${temp}°C</div>
+      <div class="forecastToday__wind text text_detail">Wind: ${wind} km/h</div>
     </div>`;
 
   document.querySelector(".threeDayForecast").innerHTML += dayForecast;
@@ -190,19 +185,15 @@ export function showDetailInformation(
 }
 
 export function setBackgroundConditionImage(url) {
-  console.log(url);
   app.style.backgroundImage = `url(${url})`;
 }
 
-function buttonAction() {
-  console.log("hello");
-}
+function buttonAction() {}
 
 function checkIfSaved(id) {
   const allSavedCities = loadCitiesFromLocalStorage();
   for (let i = 0; i < allSavedCities.length; i++) {
     if (id === allSavedCities[i].id) {
-      console.log("id gefunden");
       document.querySelector(".right_icon").style.display = "none";
       return;
     } else {

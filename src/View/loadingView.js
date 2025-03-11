@@ -1,7 +1,6 @@
 import "../Style/loadingView.scss";
 
 export function showingLoadingScreen() {
-  console.log("loading view wird angezeigt");
   const container = document.createElement("div");
   container.classList.add("loadingContainer");
   const span = document.createElement("span");

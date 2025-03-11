@@ -106,7 +106,7 @@ body {
   display: flex;
   gap: 0.5rem;
   align-items: center;
-
+  justify-content: space-between;
   &__day {
     width: 15%;
   }

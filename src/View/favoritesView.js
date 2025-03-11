@@ -69,7 +69,7 @@ export function showCity(
   cityEl.classList.add("favorite");
 
   const deleteBoxDiv = document.createElement("div");
-  deleteBoxDiv.classList.add("deleteBox", name);
+  deleteBoxDiv.classList.add("deleteBox", id);
   deleteBoxDiv.addEventListener("click", () => {
     deleteElementFromLocalStorage(id);
   });
@@ -95,7 +95,7 @@ export function showCity(
 
   const rightBoxDiv = document.createElement("div");
   rightBoxDiv.classList.add("rightBox");
-  rightBoxDiv.id = name;
+  rightBoxDiv.id = id;
   rightBoxDiv.style.backgroundImage = `url(${img})`;
 
   const descriptionDiv = document.createElement("div");
@@ -141,9 +141,9 @@ export function showCity(
 
   document.querySelector(".favoriteList").appendChild(cityEl);
 
-  document.getElementById(name).addEventListener("click", async () => {
+  rightBoxDiv.addEventListener("click", async () => {
     disableFavoriteView();
-    let cityData = await fetchData(name);
+    let cityData = await fetchData(rightBoxDiv.id);
     let id = "";
     const allCities = loadCitiesFromLocalStorage();
     for (let i = 0; i < allCities.length; i++) {
