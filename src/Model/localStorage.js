@@ -42,7 +42,6 @@ export function deleteElementFromLocalStorage(id) {
       newCityList.push(loadedCities[i]);
     }
   }
-  console.log("neue Liste");
   updateFavoriteList(newCityList);
   displayFavoriteView();
 }
