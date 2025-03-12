@@ -182,7 +182,7 @@ export async function displayPossibleCities(city, country, id) {
 export function showNoFavorites() {
   const el = document.createElement("span");
   const el_text = document.createTextNode("keine Favoriten gespeichert");
-  el.style.color = "white";
+  el.classList.add("text");
   el.appendChild(el_text);
   app.appendChild(el);
 }
