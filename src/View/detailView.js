@@ -135,12 +135,12 @@ export function showTwentyFourHourForecast(time, icon, temperature) {
 export function showThreeDaysForecast(day, temp, icon, wind) {
   const dayForecast = `
     <div class="forecastToday">
-      <div class="forecastToday__day text text_detail">${day}</div>
+      <div class="forecastToday__day text text_detail sm_size">${day}</div>
       <div class="forecastToday__icon">
         <img src="${icon}" alt="Wetter Icon" class="img_threeDayForecast">
       </div>
-      <div class="forecastToday__temp text text_detail">${temp}°C</div>
-      <div class="forecastToday__wind text text_detail">Wind: ${wind} km/h</div>
+      <div class="forecastToday__temp text text_detail sm_size">${temp}°C</div>
+      <div class="forecastToday__wind text text_detail sm_size">Wind: ${wind} km/h</div>
     </div>`;
 
   document.querySelector(".threeDayForecast").innerHTML += dayForecast;
