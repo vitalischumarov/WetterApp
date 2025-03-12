@@ -5,6 +5,7 @@ import {
 } from "../Model/localStorage";
 
 const app = document.querySelector(".app");
+app.classList.add("background_style");
 let currentId = "";
 
 export function showHeader() {
@@ -185,8 +186,12 @@ export function showDetailInformation(
 }
 
 export function setBackgroundConditionImage(url) {
-  app.style.backgroundImage = `url(${url})`;
+  document.querySelector(
+    ".background_style"
+  ).style.backgroundImage = `url(${url})`;
 }
+
+// `url(${url})`
 
 function buttonAction() {}
 
