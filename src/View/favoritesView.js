@@ -23,8 +23,8 @@ export function showHeaderOfFavorite() {
                   class="inputField__element"
                   placeholder="Gebe den Namen einer Stadt an"
               />
+            <div class="suggestionList"></div>
           </div>
-          <div class="suggestionList"></div>
           <div class="favoriteList"></div>
     `;
   app.innerHTML = basicStructure;

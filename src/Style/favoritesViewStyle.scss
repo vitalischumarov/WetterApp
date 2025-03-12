@@ -33,6 +33,8 @@
   width: 90%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  position: relative;
   &__element {
     width: 100%;
     height: 2rem;
@@ -41,8 +43,10 @@
 
 .suggestionList {
   background-color: black;
-  width: 90%;
+  width: 100%;
   margin-bottom: 2rem;
+  position: absolute;
+  top: 40px;
   z-index: 2;
 
   &__city {
@@ -68,8 +72,8 @@
 }
 
 .favoriteList {
-  position: absolute;
-  top: 20%;
+  // position: absolute;
+  // top: 20%;
   width: 90%;
   display: flex;
   flex-direction: column;
