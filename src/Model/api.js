@@ -16,21 +16,20 @@ export async function fetchData(cityName) {
   return data;
 }
 
-export async function fetchCityNames(url) {
-  showingLoadingScreen();
-  let response = await fetch(url);
-  if (!response.status) {
-    return;
-  }
-  let data = await response.json();
-  disableLoading();
-  return data;
-}
+// export async function fetchCityNames(url) {
+//   showingLoadingScreen();
+//   let response = await fetch(url);
+//   if (!response.status) {
+//     return;
+//   }
+//   let data = await response.json();
+//   disableLoading();
+//   return data;
+// }
 
 export async function fetchSuggestions(name) {
   const response = await fetch(
-    `https://api.weatherapi.com/v1/search.json?q=${name}&key=4d9509708acc49a6a8740155253101
-`
+    `https://api.weatherapi.com/v1/search.json?q=${name}&key=4d9509708acc49a6a8740155253101&lang=DE`
   );
   if (!response.status) {
     disableLoading();

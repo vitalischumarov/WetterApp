@@ -84,7 +84,7 @@ export function showCurrentCityInformation(cityName, id) {
                   <span class="currentWeather__mainInformation city text">${cityName.location.name}</span>
                   <span
                       class="currentWeather__mainInformation weather text"
-                  >${cityName.current.temp_c}</span>
+                  >${cityName.current.temp_c}°</span>
                   <span
                       class="currentWeather__mainInformation condition text"
                   >${cityName.current.condition.text}</span>
@@ -126,7 +126,7 @@ export function showTwentyFourHourForecast(time, icon, temperature) {
         <img src="${icon}" alt="Weather image">
       </div>
       <div class="forecastData__temp text">
-      ${temperature}
+      ${temperature}°
       </div>
     </div>`;
   inputForForecast.innerHTML += forcastInformation;
