@@ -174,11 +174,11 @@ export function showDetailInformation(
       </div>
       <div class="detailView__rain singleBox">
         <span class="text">Niederschlag</span>
-        <span class="text rain">${uvindex}</span>
+        <span class="text rain">${rain}</span>
       </div>
       <div class="detailView__uvindex singleBox">
         <span class="text">UV-Index</span>
-        <span class="text uvindex">${rain}</span>
+        <span class="text uvindex">${uvindex}</span>
       </div>
     </div>`;
 
